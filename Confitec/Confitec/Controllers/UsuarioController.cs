@@ -24,5 +24,12 @@ namespace Confitec.Application.Controllers
         public async Task<IActionResult> Post([FromBody] InsertUsuarioRequest request)
             => await ExecControllerAsync(() => _usuarioService.InsertAsync(request));
 
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] UpdateUsuarioRequest request)
+            => await ExecControllerAsync(() => _usuarioService.UpdateAsync(request));
+
+        [HttpDelete("{Id:int}")]
+        public async Task<IActionResult> Delete([FromRoute] int Id)
+            => await ExecControllerAsync(() => _usuarioService.DeleteAsync(Id));
     }
 }

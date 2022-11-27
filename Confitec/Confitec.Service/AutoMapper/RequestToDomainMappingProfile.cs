@@ -9,6 +9,7 @@ namespace Confitec.Service.AutoMapper
         public RequestToDomainMappingProfile()
         {
             CreateMap<InsertUsuarioRequest, Usuario>();
+            CreateMap<UpdateUsuarioRequest, Usuario>();
         }
     }
 }

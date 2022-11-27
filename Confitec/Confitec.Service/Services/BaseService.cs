@@ -17,7 +17,7 @@ namespace Confitec.Service.Services
             LNotifications = lNotification;
         }
 
-        public void Delete(TEntity entity) => IBaseRepository.Delete(entity);
+        public void Remove(TEntity entity) => IBaseRepository.Remove(entity);
         public async Task Insert<TValidator>(TEntity entity) where TValidator : AbstractValidator<TEntity>
         {
             var validate = Validate(entity, Activator.CreateInstance<TValidator>());
@@ -29,6 +29,11 @@ namespace Confitec.Service.Services
             var validate = Validate(entity, Activator.CreateInstance<TValidator>());
             if (validate)
                 IBaseRepository.Update(entity);
+        }
+
+        protected void SetDeleteEntity<T>(T entity) where T : EntityDataBase
+        { 
+            entity.Active = !entity.Active; 
         }
 
         private bool Validate(TEntity entity, AbstractValidator<TEntity> validator)

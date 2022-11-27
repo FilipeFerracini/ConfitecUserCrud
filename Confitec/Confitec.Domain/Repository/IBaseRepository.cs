@@ -8,7 +8,7 @@ namespace Confitec.Domain.Repository
         void Add(TEntity entity);
         Task AddAsync(TEntity entity);
         void Update(TEntity entity);
-        void Delete(TEntity entity);
+        void Remove(TEntity entity);
         IUnitOfWork UnitOfWork { get; }
         IBaseConsultRepository<TEntity> RepositoryConsult { get; }
     }

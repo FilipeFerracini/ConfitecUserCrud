@@ -11,6 +11,6 @@ namespace Confitec.Domain.Service
         public LNotifications LNotifications { get; }
         Task Insert<TValidator>(TEntity entity) where TValidator: AbstractValidator<TEntity>;
         void Update<TValidator>(TEntity entity) where TValidator: AbstractValidator<TEntity>;
-        void Delete(TEntity entity);
+        void Remove(TEntity entity);
     }
 }

@@ -8,5 +8,7 @@ namespace Confitec.Domain.Service
     {
         Task<GetUsuarioResponse> GetUsuariosAsync(GetUsuarioRequest request);
         Task<InsertUsuarioResponse> InsertAsync(InsertUsuarioRequest request);
+        Task<UpdateUsuarioResponse> UpdateAsync(UpdateUsuarioRequest request);
+        Task<DeleteUsuarioResponse> DeleteAsync(int id);
     }
 }

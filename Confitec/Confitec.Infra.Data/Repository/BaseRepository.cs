@@ -21,7 +21,7 @@ namespace Confitec.Infra.Data.Repository
 
         public void Add(TEntity entity) => DbSet.Add(entity);
         public async Task AddAsync(TEntity entity) => await UnitOfWork.GetContext().Set<TEntity>().AddAsync(entity);
-        public void Delete(TEntity entity) => DbSet.Remove(entity);
+        public void Remove(TEntity entity) => DbSet.Remove(entity);
         public void Update(TEntity entity) => UnitOfWork.GetContext().Set<TEntity>().Update(entity);
     }
 }

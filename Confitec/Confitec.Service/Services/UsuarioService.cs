@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+using Azure.Core;
 using Confitec.Domain.Models.User;
 using Confitec.Domain.Models.User.Dtos;
 using Confitec.Domain.Models.User.Request;
 using Confitec.Domain.Models.User.Response;
 using Confitec.Domain.Repository;
 using Confitec.Domain.Service;
+using Confitec.Infra.CrossCutting;
 using static Confitec.Infra.CrossCutting.Notification;
 
 namespace Confitec.Service.Services
@@ -57,6 +59,43 @@ namespace Confitec.Service.Services
             {
                 await _unitOfWork.CommitAsync();
                 return _mapper.Map<InsertUsuarioResponse>(usuario);
+            }
+            return null;
+        }
+
+        public async Task<UpdateUsuarioResponse> UpdateAsync(UpdateUsuarioRequest request)
+        {
+            var usuario = _mapper.Map<Usuario>(request);
+            if (!await _usuarioRepository.RepositoryConsult.ExistsAsync(u => u.Id == usuario.Id))
+            {
+                LNotifications.Add(new Notify { Message = " Atenção, Usuário não encontrado. Verifique." });
+                return null;
+            }
+
+            _usuarioRepository.Update(usuario);
+            if (!LNotifications.Any())
+            {
+                await _unitOfWork.CommitAsync();
+                return new UpdateUsuarioResponse();
+            }
+            return null;
+        }
+
+        public async Task<DeleteUsuarioResponse> DeleteAsync(int id)
+        {
+            if (!await _usuarioRepository.RepositoryConsult.ExistsAsync(u => u.Id == id))
+            {
+                LNotifications.Add(new Notify { Message = " Atenção, Usuário não encontrado. Verifique." });
+                return null;
+            }
+
+            var usuario = (await _usuarioRepository.RepositoryConsult.SearchAsync(u => u.Id == id)).FirstOrDefault();
+            //SetDeleteEntity<Usuario>(usuario); //DELEÇÃO LÓGICA
+            _usuarioRepository.Remove(usuario); //DELEÇÃO FÍSICA
+            if (!LNotifications.Any())
+            {
+                await _unitOfWork.CommitAsync();
+                return new DeleteUsuarioResponse();
             }
             return null;
         }
