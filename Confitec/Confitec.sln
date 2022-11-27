@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33110.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confitec.Application", "Confitec\Confitec.Application.csproj", "{EC433A2C-9150-4030-A399-C744095B1A77}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3B3D8653-9FAE-49FC-ABD6-F57434820C69} = {3B3D8653-9FAE-49FC-ABD6-F57434820C69}
+		{72887EB8-FDF9-465C-AA98-1A44756253C5} = {72887EB8-FDF9-465C-AA98-1A44756253C5}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Application", "1 - Application", "{523C114F-23DF-4CE9-BBFA-52CB373F49A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{F20E6ECD-C05C-403D-95E9-1F17BA049798}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Service", "3 - Service", "{FDC2627E-879D-4741-BDF0-3BCC3779FF4E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{8A002106-8F07-46B9-80F5-7D5F7D1808B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.1 - Data", "4.1 - Data", "{D114827A-8C99-4E79-A861-67B6191AA992}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.2 - CrossCutting", "4.2 - CrossCutting", "{829B57A9-E7D3-421F-BF2F-9C115EBA0898}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confitec.Domain", "Confitec.Domain\Confitec.Domain.csproj", "{ECDF4B92-AA0C-49A5-846D-805DC0AF8C19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confitec.Service", "Confitec.Service\Confitec.Service.csproj", "{72887EB8-FDF9-465C-AA98-1A44756253C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Confitec.Infra.Data", "Confitec.Infra.Data\Confitec.Infra.Data.csproj", "{3B3D8653-9FAE-49FC-ABD6-F57434820C69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Confitec.Infra.CrossCutting", "Confitec.Infra.CrossCutting\Confitec.Infra.CrossCutting.csproj", "{0949B9E0-9C59-4993-AD5D-DA5DA37F5B78}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC433A2C-9150-4030-A399-C744095B1A77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC433A2C-9150-4030-A399-C744095B1A77}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC433A2C-9150-4030-A399-C744095B1A77}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC433A2C-9150-4030-A399-C744095B1A77}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECDF4B92-AA0C-49A5-846D-805DC0AF8C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECDF4B92-AA0C-49A5-846D-805DC0AF8C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECDF4B92-AA0C-49A5-846D-805DC0AF8C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECDF4B92-AA0C-49A5-846D-805DC0AF8C19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72887EB8-FDF9-465C-AA98-1A44756253C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72887EB8-FDF9-465C-AA98-1A44756253C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72887EB8-FDF9-465C-AA98-1A44756253C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72887EB8-FDF9-465C-AA98-1A44756253C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B3D8653-9FAE-49FC-ABD6-F57434820C69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B3D8653-9FAE-49FC-ABD6-F57434820C69}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B3D8653-9FAE-49FC-ABD6-F57434820C69}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B3D8653-9FAE-49FC-ABD6-F57434820C69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0949B9E0-9C59-4993-AD5D-DA5DA37F5B78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0949B9E0-9C59-4993-AD5D-DA5DA37F5B78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0949B9E0-9C59-4993-AD5D-DA5DA37F5B78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0949B9E0-9C59-4993-AD5D-DA5DA37F5B78}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EC433A2C-9150-4030-A399-C744095B1A77} = {523C114F-23DF-4CE9-BBFA-52CB373F49A8}
+		{D114827A-8C99-4E79-A861-67B6191AA992} = {8A002106-8F07-46B9-80F5-7D5F7D1808B0}
+		{829B57A9-E7D3-421F-BF2F-9C115EBA0898} = {8A002106-8F07-46B9-80F5-7D5F7D1808B0}
+		{ECDF4B92-AA0C-49A5-846D-805DC0AF8C19} = {F20E6ECD-C05C-403D-95E9-1F17BA049798}
+		{72887EB8-FDF9-465C-AA98-1A44756253C5} = {FDC2627E-879D-4741-BDF0-3BCC3779FF4E}
+		{3B3D8653-9FAE-49FC-ABD6-F57434820C69} = {D114827A-8C99-4E79-A861-67B6191AA992}
+		{0949B9E0-9C59-4993-AD5D-DA5DA37F5B78} = {829B57A9-E7D3-421F-BF2F-9C115EBA0898}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {807ED769-283B-4B54-8393-955D4B7993BD}
+	EndGlobalSection
+EndGlobal
