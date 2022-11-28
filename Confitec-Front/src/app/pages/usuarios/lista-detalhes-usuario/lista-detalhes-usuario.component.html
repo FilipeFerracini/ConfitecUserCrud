@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-xl-12 col-lg-12">
+    <div class="card shadow-sm mb-4">
+      <a class="d-block card-header py-3" aria-expanded="true" aria-controls="collapseCardRel01">
+        <h6 class="m-0 text-primary">Resultado</h6>
+      </a>
+      <div class="card-body">
+        <div class="row mt-3">
+          <div class="table-responsive">
+            <table id="rel01" class="table table-hover display font-weight-light small" cellspacing="0">
+              <thead class="rel">
+                <tr>
+                  <th scope="col" class="col-'Nome' text-left alterarLargura">
+                    <a id="detalhePendenciaAcaoCabecalhoNomeTitle">Nome
+                    </a>
+                  </th>
+                  <th scope="col" class="col-'Sobrenome' text-left alterarLargura">
+                    <a id="detalhePendenciaAcaoCabecalhoSobrenomeTitle">Sobrenome
+                    </a>
+                  </th>
+                  <th scope="col" class="col-'Email' text-left alterarLargura">
+                    <a id="detalhePendenciaAcaoCabecalhoEmailTitle">Email
+                    </a>
+                  </th>
+                  <th scope="col" class="col-'DataNascimento' text-left alterarLargura">
+                    <a id="detalhePendenciaAcaoCabecalhoDataNascimentoTitle">Data de Nascimento
+                    </a>
+                  </th>
+                  <th scope="col" class="col-'TipoProjeto' text-left alterarLargura">
+                    <a id="detalhePendenciaAcaoCabecalhoTipoProjetoTitle">Escolaridade
+                    </a>
+                  </th>
+                  <th class="text-center">Excluir</th>
+                  <th class="text-center">Editar</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of listaUsuarios">
+                  <td>{{ item.nome }}</td>
+                  <td>{{ item.sobrenome }}</td>
+                  <td>{{ item.email }}</td>
+                  <td>{{ item.dataNascimento }}</td>
+                  <td>
+                    <span *ngIf="item.escolaridade===1">Infantil</span>
+                    <span *ngIf="item.escolaridade===2">Fundamental</span>
+                    <span *ngIf="item.escolaridade===3">Médio</span>
+                    <span *ngIf="item.escolaridade===4">Superior</span>
+                  </td>
+                  <td class="text-center" (click)="confirmarDeletarUsuario(item)"><i class="bi bi-trash"></i></td>
+                  <td class="text-center" (click)="editarUsuario(item)"><i class="bi bi-pencil-square"></i></td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr *ngIf="!listaUsuarios || listaUsuarios?.length == 0">
+                  <td class="bg-grey-1 text-center" [attr.colspan]="11">
+                    <h3 id="gridPendenciaNaoEncontradoTitle" class="m-0">
+                      Nenhum resultado
+                    </h3>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal-confirm (btnOkReturn)="deletarUsuario($event)" (btnCancelReturn)="cancelarModal($event)"
+  #modalDelete>
+</app-modal-confirm>

@@ -1,0 +1,6 @@
+<div class="container-fluid">
+  <router-outlet></router-outlet>
+</div>
+<ngx-loading [show]="this.loadingService.getLoading()"
+  [config]="{backdropBorderRadius: '3px', fullScreenBackdrop: true}" [template]="loaderTemplate">
+</ngx-loading>

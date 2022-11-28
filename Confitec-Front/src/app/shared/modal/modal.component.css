@@ -1,0 +1,15 @@
+.disablePointerEvents {
+  pointer-events: none;
+  opacity: 50%;
+}
+
+::ng-deep .custom-modal-xxl .modal-dialog {
+  max-width: 85%;
+  width: 85%;
+}
+
+::ng-deep .modal-body {
+  padding: 0 !important;
+  max-height: 700px;
+  overflow-y: auto;
+}

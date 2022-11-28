@@ -1,0 +1,62 @@
+<div class="row pt-2">
+  <div class="col-xl-12 col-lg-12">
+    <div class="card shadow-sm mb-4">
+      <a class="d-block card-header py-3" aria-expanded="true" aria-controls="collapseCardRel01">
+        <h6 class="m-0 text-primary">Usuários</h6>
+      </a>
+
+      <div class="col-sm-12 mb-sm-0 align-items-center">
+        <div class="row">
+          <div class="col-sm-4 align-items-center">
+            <label class="small">Nome:</label>
+            <input type="text" class="form-control" [(ngModel)]="nome" id="nome" />
+          </div>
+          <div class="col-sm-4 align-items-center">
+            <label class="small">Sobrenome:</label>
+            <input type="text" class="form-control" [(ngModel)]="sobrenome" id="sobrenome" />
+          </div>
+          <div class="col-sm-4 align-items-center">
+            <label class="small">Email:</label>
+            <input type="text" class="form-control" [(ngModel)]="email" id="email" />
+          </div>
+        </div>
+
+        <div class="col-sm-12 mb-sm-0 align-items-center">
+          <div class="row">
+            <div class="col-sm-3 align-items-center">
+              <app-date-input (dateSelectedEvent)="dateSelectBirthday($event)"></app-date-input>
+            </div>
+            <div class="col-sm-3 mb-sm-0">
+              <div class="form-group mb-1">
+                <label class="small">Escolaridade</label>
+                <div class="input-group">
+                  <select class="form-select" id="escolaridade" [(ngModel)]="escolaridade">
+                    <option [ngValue]="undefined"></option>
+                    <option [ngValue]="1">Infantil</option>
+                    <option [ngValue]="2">Fundamental</option>
+                    <option [ngValue]="3">Médio</option>
+                    <option [ngValue]="4">Superior</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3 pt-2 text-right">
+              <button class="btn btn-primary" (click)="pesquisar()">
+                Pesquisar
+              </button>
+            </div>
+            <div class="col-sm-3 pt-2">
+              <button class="btn btn-primary" (click)="cadastrarNovoUsuario()">
+                Novo Usuário
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-modal (saveEvent)="salvarUsuario()" [ngbModalOptions]="ngbModalOptionsNovoUsuario" #modalnovoUsuario>
+  <app-novo-usuario (usuarioSalvo)="usuarioSalvo()" #novoUsuario></app-novo-usuario>
+</app-modal>

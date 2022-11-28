@@ -1,0 +1,33 @@
+<form novalidate="novalidate" (ngSubmit)="salvarNovoUsuario()" [formGroup]="usuarioForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="userId">Nome:</label>
+      <input formControlName="nome" type="text" class="form-control" id="nome">
+    </div>
+    <div class="form-group col-md-6">
+      <label for="userId">Sobrenome:</label>
+      <input formControlName="sobrenome" type="text" class="form-control" id="sobrenome">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label for="userId">Email:</label>
+      <input formControlName="email" type="text" class="form-control" id="email">
+    </div>
+    <div class="form-group col-md-4">
+      <label for="userId">Data de Nascimento:</label>
+      <app-date-input #datePicker (dateSelectedEvent)="dateSelectBirthday($event)">
+      </app-date-input>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="userId">Escolaridade:</label>
+      <select class="form-select" id="escolaridade" formControlName="escolaridade">
+        <option [ngValue]="undefined"></option>
+        <option [ngValue]="1">Infantil</option>
+        <option [ngValue]="2">Fundamental</option>
+        <option [ngValue]="3">Médio</option>
+        <option [ngValue]="4">Superior</option>
+      </select>
+    </div>
+  </div>
+</form>

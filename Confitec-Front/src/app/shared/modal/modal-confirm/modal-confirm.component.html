@@ -1,0 +1,21 @@
+<ng-template #content let-modal>
+  <div class="modal-header" [class.warningHeader]="warning">
+    <h4 class="modal-title" id="modal-basic-title">{{modalTitle}}</h4>
+  </div>
+  <div class="modal-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div clas="col-md-12 ml-auto">
+          <div [class.warningText]="warning">
+            {{modalText}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="confirm()" data-dismiss="modal">Sim</button>
+    <button type="button" class="btn btn-secondary" (click)="cancel()" data-dismiss="modal">Não</button>
+  </div>
+</ng-template>
