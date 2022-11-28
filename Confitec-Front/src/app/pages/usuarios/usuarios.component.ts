@@ -20,6 +20,5 @@ export class UsuariosComponent implements OnInit {
 
   pesquisarUsuarios(filtrosUsuario: GetUsuariosRequest) {
     this.filtrosUsuario = filtrosUsuario;
-    console.log(this.filtrosUsuario);
   }
 }

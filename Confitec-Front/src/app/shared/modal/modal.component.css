@@ -11,5 +11,5 @@
 ::ng-deep .modal-body {
   padding: 0 !important;
   max-height: 700px;
-  overflow-y: auto;
+  overflow-y: inherit;
 }

@@ -48,7 +48,10 @@ export class FiltrosUsuariosComponent implements OnInit {
       let date = new Date(
         ngbDateStruct.year,
         ngbDateStruct.month - 1,
-        ngbDateStruct.day
+        ngbDateStruct.day,
+        0,
+        0,
+        0
       );
       this.dataNascimento = date;
     }
@@ -59,7 +62,7 @@ export class FiltrosUsuariosComponent implements OnInit {
       this.nome,
       this.sobrenome,
       this.email,
-      this.dataNascimento, //PROBLEMAS COM DATA
+      this.dataNascimento?.toISOString(),
       this.escolaridade
     );
 

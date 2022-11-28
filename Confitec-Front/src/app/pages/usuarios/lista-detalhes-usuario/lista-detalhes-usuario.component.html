@@ -35,11 +35,11 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let item of listaUsuarios">
+                <tr *ngFor="let item of listaUsuarios?.data">
                   <td>{{ item.nome }}</td>
                   <td>{{ item.sobrenome }}</td>
                   <td>{{ item.email }}</td>
-                  <td>{{ item.dataNascimento }}</td>
+                  <td>{{ item.dataNascimentoFormatada }}</td>
                   <td>
                     <span *ngIf="item.escolaridade===1">Infantil</span>
                     <span *ngIf="item.escolaridade===2">Fundamental</span>
@@ -47,11 +47,11 @@
                     <span *ngIf="item.escolaridade===4">Superior</span>
                   </td>
                   <td class="text-center" (click)="confirmarDeletarUsuario(item)"><i class="bi bi-trash"></i></td>
-                  <td class="text-center" (click)="editarUsuario(item)"><i class="bi bi-pencil-square"></i></td>
+                  <td class="text-center" (click)="openModalEditarUsuario(item)"><i class="bi bi-pencil-square"></i></td>
                 </tr>
               </tbody>
               <tbody>
-                <tr *ngIf="!listaUsuarios || listaUsuarios?.length == 0">
+                <tr *ngIf="!listaUsuarios || listaUsuarios?.data!.length == 0">
                   <td class="bg-grey-1 text-center" [attr.colspan]="11">
                     <h3 id="gridPendenciaNaoEncontradoTitle" class="m-0">
                       Nenhum resultado
@@ -69,3 +69,7 @@
 <app-modal-confirm (btnOkReturn)="deletarUsuario($event)" (btnCancelReturn)="cancelarModal($event)"
   #modalDelete>
 </app-modal-confirm>
+
+<app-modal (saveEvent)="editaUsuario()" [ngbModalOptions]="ngbModalOptionsNovoUsuario" #modal>
+  <app-editar-usuario (usuarioSalvo)="usuarioEditado()" #editarUsuarioModal></app-editar-usuario>
+</app-modal>

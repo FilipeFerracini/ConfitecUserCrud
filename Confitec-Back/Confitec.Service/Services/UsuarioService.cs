@@ -6,6 +6,7 @@ using Confitec.Domain.Models.User.Response;
 using Confitec.Domain.Repository;
 using Confitec.Domain.Service;
 using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using static Confitec.Infra.CrossCutting.Notification;
 
 namespace Confitec.Service.Services
@@ -28,26 +29,26 @@ namespace Confitec.Service.Services
         public async Task<GetUsuarioResponse> GetUsuariosAsync(GetUsuarioRequest request)
         {
             var response = new GetUsuarioResponse();
-            var query = await _usuarioRepository.RepositoryConsult.GetAllAsync();
+            var query = _usuarioRepository.RepositoryConsult.GetQueryable();
 
             if (!string.IsNullOrEmpty(request.Nome))
                 query = query.Where(x => x.Nome.Contains(request.Nome));
 
             if (!string.IsNullOrEmpty(request.Sobrenome))
-                query = query.Where(x => x.Nome.Contains(request.Sobrenome));
+                query = query.Where(x => x.Sobrenome.Contains(request.Sobrenome));
 
             if (!string.IsNullOrEmpty(request.Email))
-                query = query.Where(x => x.Nome.Contains(request.Email));
+                query = query.Where(x => x.Email.Contains(request.Email));
 
             if (request.DataNascimento.HasValue)
-                query = query.Where(x => x.DataNascimento == request.DataNascimento);
+                query = query.Where(x => x.DataNascimento.Date == request.DataNascimento.Value.Date
+                    && x.DataNascimento.Month == request.DataNascimento.Value.Month
+                    && x.DataNascimento.Year == request.DataNascimento.Value.Year);
 
             if (request.Escolaridade.HasValue)
                 query = query.Where(x => x.Escolaridade == request.Escolaridade.Value);
 
-            if (query.Any())
-                foreach (var usuario in query)
-                    response.Data.Add(_mapper.Map<UsuarioDto>(usuario));
+            response.Data.AddRange((await query.ToListAsync()).Select(x => _mapper.Map<UsuarioDto>(x)));
 
             return response;
         }

@@ -21,6 +21,22 @@ builder.Configuration.AddJsonFile("appsettings.json", true, true)
                     .AddJsonFile($"appsettings.{environment.EnvironmentName}.json", true, true)
                     .AddEnvironmentVariables();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Development",
+          builder =>
+              builder
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowAnyOrigin()); // allow credentials
+
+    options.AddPolicy("Production",
+        builder =>
+            builder
+              .AllowAnyMethod()
+              .AllowAnyHeader()
+              .AllowAnyOrigin()); // allow credentials
+});
 
 // Add services to the container.
 builder.Services.AddValidatorConfiguration();
@@ -56,6 +72,17 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+}
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseCors("Development");
+}
+else if (app.Environment.IsProduction())
+{
+    app.UseDeveloperExceptionPage();
+    app.UseCors("Production");
 }
 
 app.UseHttpsRedirection();

@@ -1,13 +1,19 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
+import { NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { ModalConfirmComponent } from 'src/app/shared/modal/modal-confirm/modal-confirm.component';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
+import { EditarUsuarioComponent } from '../editar-usuario/editar-usuario.component';
 import { GetUsuariosRequest } from '../models/request/GetUsuarios.request';
+import { UpdateUsuarioRequest } from '../models/request/UpdateUsuario.request';
 import { GetUsuariosResponse } from '../models/response/GetUsuarios.response';
 import { UsuarioModel } from '../models/usuario.model';
 import { UsuariosService } from '../services/usuarios.service';
@@ -20,11 +26,24 @@ import { UsuariosService } from '../services/usuarios.service';
 export class ListaDetalhesUsuarioComponent implements OnInit {
   @Input() filtrosUsuario: GetUsuariosRequest | undefined;
 
-  @ViewChild('modalDelete', { static: false })
-  modalDelete: ModalConfirmComponent | undefined;
+  @ViewChild('editarUsuarioModal') editarUsuarioModal: EditarUsuarioComponent | undefined;
+  @ViewChild('modalDelete', { static: false }) modalDelete:
+    | ModalConfirmComponent
+    | undefined;
+  @ViewChild('modal') private modalComponent:
+    | ModalComponent
+    | undefined;
 
-  public listaUsuarios: UsuarioModel[] = [];
+  public ngbModalOptionsNovoUsuario: NgbModalOptions = {
+    centered: true,
+    size: 'lg',
+    backdrop: 'static',
+    keyboard: false,
+  };
+
+  public listaUsuarios: GetUsuariosResponse = new GetUsuariosResponse();
   public usuarioDelete: UsuarioModel | undefined;
+  public usuarioUpdate: UsuarioModel | undefined;
 
   constructor(
     private toastr: ToastrService,
@@ -45,9 +64,8 @@ export class ListaDetalhesUsuarioComponent implements OnInit {
 
   filtrar() {
     this.usuariosService.getUsuarios(this.filtrosUsuario!).subscribe((subs) => {
-      this.listaUsuarios = subs.data!.usuarios;
+      this.listaUsuarios = subs.data!;
     });
-    console.log(this.listaUsuarios);
   }
 
   confirmarDeletarUsuario(usuario: UsuarioModel) {
@@ -73,7 +91,19 @@ export class ListaDetalhesUsuarioComponent implements OnInit {
     this.modalDelete?.closeModal();
   }
 
-  editarUsuario(usuario: UsuarioModel) {}
+  openModalEditarUsuario(usuario: UsuarioModel) {
+    this.modalComponent?.open();
+    this.editarUsuarioModal?.preencherCampos(usuario);
+  }
+
+  editaUsuario() {
+    this.editarUsuarioModal?.editarUsuario();
+  }
+
+  usuarioEditado() {
+    this.modalComponent?.close();
+    this.filtrar();
+  }
 
   showMessageSuccess(message: string) {
     this.toastr.success(message, '', { positionClass: 'toast-bottom-right' });

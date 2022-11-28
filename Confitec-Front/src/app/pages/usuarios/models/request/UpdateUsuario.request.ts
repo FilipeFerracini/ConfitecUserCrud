@@ -1,4 +1,4 @@
-import { EEscolaridade } from "src/app/enums/EEscolaridade";
+import { EEscolaridade } from 'src/app/enums/EEscolaridade';
 
 export class UpdateUsuarioRequest {
   public id: number | undefined;

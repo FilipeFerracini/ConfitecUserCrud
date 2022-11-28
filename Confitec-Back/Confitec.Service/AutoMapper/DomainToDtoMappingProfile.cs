@@ -13,7 +13,8 @@ namespace Confitec.Service.AutoMapper
     {
         public DomainToDtoMappingProfile()
         {
-            CreateMap<Usuario, UsuarioDto>();
+            CreateMap<Usuario, UsuarioDto>()
+                .ForMember(d=> d.DataNascimentoFormatada, s=> s.MapFrom(m => m.DataNascimento.ToShortDateString()));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace Confitec.Domain.Models.User.Dtos
         public string Sobrenome { get; set; } = "";
         public string Email { get; set; } = "";
         public DateTime DataNascimento { get; set; }
+        public string DataNascimentoFormatada { get; set; } = "";
         public EEscolaridade Escolaridade { get; set; }
     }
 }

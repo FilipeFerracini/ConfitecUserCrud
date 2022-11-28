@@ -1,8 +1,8 @@
 <form class="row row-cols-sm-auto">
   <div class="col-12">
     <div class="input-group">
-      <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
-        (dateSelect)="onDateSelected()" #d="ngbDatepicker" />
+      <input class="form-control" placeholder="dd/mm/yyyy" name="dp" [(ngModel)]="model" ngbDatepicker
+        (dateSelect)="onDateSelected()" #d="ngbDatepicker" [minDate]="{year: 1930, month:1, day: 1}"/>
       <button class="btn btn-outline-secondary bi bi-calendar3" (click)="d.toggle()" type="button">
       </button>
       <button *ngIf="showClearData" type="button" class="btn btn-outline-secondary calendar bi bi-trash"

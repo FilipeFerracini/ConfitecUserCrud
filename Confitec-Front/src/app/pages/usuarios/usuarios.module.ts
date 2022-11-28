@@ -7,6 +7,7 @@ import { FiltrosUsuariosComponent } from './filtros-usuarios/filtros-usuarios.co
 import { ListaDetalhesUsuarioComponent } from './lista-detalhes-usuario/lista-detalhes-usuario.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { NovoUsuarioComponent } from './novo-usuario/novo-usuario.component';
     FiltrosUsuariosComponent,
     ListaDetalhesUsuarioComponent,
     NovoUsuarioComponent,
+    EditarUsuarioComponent,
   ],
   imports: [
     CommonModule,

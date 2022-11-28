@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api:'https://localhost:7099/api',
+  api:'https://localhost:7099/api/',
   limitUpload:5000000,
   limitUploadArchive:4000000
 };

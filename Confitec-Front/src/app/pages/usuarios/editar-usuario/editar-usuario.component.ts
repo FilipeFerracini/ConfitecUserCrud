@@ -6,21 +6,23 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DateInputComponent } from 'src/app/shared/date-input/date-input.component';
-import { InsertUsuarioRequest } from '../models/request/InsertUsuario.request';
+import { UpdateUsuarioRequest } from '../models/request/UpdateUsuario.request';
+import { UsuarioModel } from '../models/usuario.model';
 import { UsuariosService } from '../services/usuarios.service';
 
 @Component({
-  selector: 'app-novo-usuario',
-  templateUrl: './novo-usuario.component.html',
-  styleUrls: ['./novo-usuario.component.css'],
+  selector: 'app-editar-usuario',
+  templateUrl: './editar-usuario.component.html',
+  styleUrls: ['./editar-usuario.component.css'],
 })
-export class NovoUsuarioComponent implements OnInit {
+export class EditarUsuarioComponent implements OnInit {
   @ViewChild('datePicker') datePicker: DateInputComponent | undefined;
   @Output() usuarioSalvo = new EventEmitter();
   public usuarioForm: FormGroup;
+  public idUsuario: number | undefined;
 
   constructor(
     private usuariosService: UsuariosService,
@@ -53,6 +55,28 @@ export class NovoUsuarioComponent implements OnInit {
     return this.usuarioForm.get('escolaridade');
   }
 
+  teste() {
+    alert('ei');
+  }
+
+  preencherCampos(usuario: UsuarioModel) {
+    this.idUsuario = usuario.id;
+    this.usuarioForm.patchValue({
+      nome: usuario.nome,
+      sobrenome: usuario.sobrenome,
+      email: usuario.email,
+      escolaridade: usuario.escolaridade,
+      dataNascimento: usuario.dataNascimento,
+    });
+
+    var date = new Date(usuario.dataNascimento!.toString());
+    var dia = date.getDate();
+    var mes = date.getMonth() + 1;
+    var ano = date.getFullYear();
+    var ngbDate = new NgbDate(ano, mes, dia);
+    this.datePicker!.model = ngbDate;
+  }
+
   dateSelectBirthday(ngbDateStruct: NgbDateStruct) {
     if (!ngbDateStruct)
       this.usuarioForm.patchValue({ dataNascimento: undefined });
@@ -70,8 +94,9 @@ export class NovoUsuarioComponent implements OnInit {
     }
   }
 
-  salvarNovoUsuario() {
+  editarUsuario() {
     if (
+      this.idUsuario == undefined ||
       this.nome?.value == '' ||
       this.sobrenome?.value == '' ||
       this.email?.value == '' ||
@@ -80,16 +105,17 @@ export class NovoUsuarioComponent implements OnInit {
     )
       this.showMessageError('Todos os campos são obrigatórios!');
     else {
-      const insertUsuarioRequest: InsertUsuarioRequest =
-        new InsertUsuarioRequest();
-      insertUsuarioRequest.nome = this.nome?.value;
-      insertUsuarioRequest.sobrenome = this.sobrenome?.value;
-      insertUsuarioRequest.email = this.email?.value;
-      insertUsuarioRequest.dataNascimento = this.dataNascimento?.value;
-      insertUsuarioRequest.escolaridade = this.escolaridade?.value;
+      const updateUsuarioRequest: UpdateUsuarioRequest =
+        new UpdateUsuarioRequest();
+      updateUsuarioRequest.id = this.idUsuario;
+      updateUsuarioRequest.nome = this.nome?.value;
+      updateUsuarioRequest.sobrenome = this.sobrenome?.value;
+      updateUsuarioRequest.email = this.email?.value;
+      updateUsuarioRequest.dataNascimento = this.dataNascimento?.value;
+      updateUsuarioRequest.escolaridade = this.escolaridade?.value;
 
       this.usuariosService
-        .insertUsuario(insertUsuarioRequest)
+        .updateUsuario(updateUsuarioRequest)
         .subscribe((subs) => {
           this.resetForm();
           this.showMessageSuccess('Usuário salvo com sucesso!');
