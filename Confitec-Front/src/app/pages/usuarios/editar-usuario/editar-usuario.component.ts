@@ -55,10 +55,6 @@ export class EditarUsuarioComponent implements OnInit {
     return this.usuarioForm.get('escolaridade');
   }
 
-  teste() {
-    alert('ei');
-  }
-
   preencherCampos(usuario: UsuarioModel) {
     this.idUsuario = usuario.id;
     this.usuarioForm.patchValue({
